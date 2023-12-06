@@ -3,16 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ name }}'s Watchlist</title>
+    {# Favicon（favourite icon） 是显示在标签页和书签栏的网站头像。
+       准备一个 ICO、PNG 或 GIF 格式的图片，大小一般为 16×16、32×32、48×48 或 64×64 像素。把这个图片放到 static 目录下， #}
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="style.css") }}" type="text/css">
 </head>
+
 <body>
-    <h2>{{ name }}'s Watchlist</h2>
+    <h2>
+        <img alt="Avatar" class="avatar" src="{{ url_for('static', filename="images/avatar.png")}}">
+        {{ name }}'s Watchlist
+    </h2>
+
     {# 使用length过滤器获取movies变量的长度 #}
     <p>{{ movies|length }} Titles</p>
-    <ul>
+    <ul class="movie-list">
         {% for movie in movies %} {# 迭代movies变量 #}
         <li>{{ movie.title }} - {{ movie.year }}</li> {# 等于movie['title'] #}
         {% endfor %} {# 使用endfor标签结束for语句 #}
     </ul>>
+
+    <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
+
     <footer>
         <small>&copy; 2018<a href="http://helloflask.com/book/3">HelloFlask</a></small>
     </footer>
